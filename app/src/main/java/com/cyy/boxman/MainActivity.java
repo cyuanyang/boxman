@@ -7,11 +7,11 @@ import android.os.Bundle;
 import android.view.ViewGroup;
 
 import com.cyy.boxman.views.Box;
-import com.cyy.boxman.views.MapView;
+//import com.cyy.boxman.views.MapView;
 
 public class MainActivity extends BaseActivity {
 
-    private MapView mapView;
+//    private MapView mapView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
