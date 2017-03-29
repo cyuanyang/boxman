@@ -1,5 +1,9 @@
 package com.cyy.boxman.tools;
 
+import android.app.Activity;
+import android.content.Context;
+import android.util.DisplayMetrics;
+
 import com.cyy.boxman.App;
 
 /**
@@ -18,6 +22,18 @@ public class ScreenTools {
             return dpValue;
         }
         return (int) (dpValue * scale + 0.5f);
+    }
+
+    public static int getScreenWidth(Activity activity){
+        DisplayMetrics metric = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(metric);
+        return  metric.widthPixels;     // 屏幕宽度（像素）
+    }
+
+    public static int getScreenHeight(Activity activity){
+        DisplayMetrics metric = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(metric);
+        return metric.heightPixels; // 屏幕宽度（像素）
     }
 
 }

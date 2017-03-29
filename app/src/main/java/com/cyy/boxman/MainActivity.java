@@ -1,35 +1,45 @@
 package com.cyy.boxman;
 
-import android.graphics.Color;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.ViewGroup;
 
-import com.cyy.boxman.views.Box;
-//import com.cyy.boxman.views.MapView;
+import com.cyy.boxman.views.map.MapView;
+import com.cyy.boxman.views.sprite.Sprite;
 
-public class MainActivity extends BaseActivity {
+import java.util.Collections;
+import java.util.List;
 
-//    private MapView mapView;
+/**
+ *
+ */
+public abstract class MainActivity extends Activity {
+
+    private MapView mapView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        mapView = new MapView(this);
-//        ViewGroup.LayoutParams lp = new ActionBar.LayoutParams(
-//                ViewGroup.LayoutParams.MATCH_PARENT , ViewGroup.LayoutParams.MATCH_PARENT);
-//        mapView.setLayoutParams(lp);
-//        setContentView(mapView);
-//
-//        mapView.setBackgroundColor(Color.RED);
-//
-//        Box box = new Box(this);
-//        box.setBackgroundColor(Color.GREEN);
-//        ViewGroup.LayoutParams boxLp = new ActionBar.LayoutParams(
-//                200 , 200);
-//        box.setLayoutParams(boxLp);
-//        mapView.addView(box);
+        super.setContentView(R.layout.activity_main);
+        initView();
+
+        mapView.setupSprites(initSprites());
+    }
+
+    private void initView() {
+        mapView = (MapView) findViewById(R.id.mapView);
+        configMapView(mapView);
+    }
+
+    protected List<List<Sprite>> initSprites(){
+        return Collections.emptyList();
+    }
+
+    /**
+     * config map view
+     * @param mapView
+     */
+    protected void configMapView(MapView mapView){
+
     }
 }
