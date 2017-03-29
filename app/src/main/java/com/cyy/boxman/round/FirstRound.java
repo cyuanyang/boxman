@@ -5,6 +5,7 @@ import android.graphics.Point;
 
 import com.cyy.boxman.MainActivity;
 import com.cyy.boxman.views.map.MapView;
+import com.cyy.boxman.views.sprite.Ground;
 import com.cyy.boxman.views.sprite.Person;
 import com.cyy.boxman.views.sprite.Sprite;
 import com.cyy.boxman.views.sprite.Wall;
@@ -40,10 +41,10 @@ public class FirstRound extends MainActivity {
                     wall.setBackgroundColor(Color.RED);
                     spriteList.add(wall);
                 }else {
-                    Sprite sprite = new Sprite(this);
-                    sprite.setPoint(new Point(i , j));
-                    sprite.setBackgroundColor(Color.WHITE);
-                    spriteList.add(sprite);
+                    Ground ground = new Ground(this);
+                    ground.setPoint(new Point(i , j));
+                    ground.setBackgroundColor(Color.WHITE);
+                    spriteList.add(ground);
                 }
             }
         }
@@ -51,13 +52,7 @@ public class FirstRound extends MainActivity {
     }
 
     @Override
-    protected List<Sprite> initControlSprites() {
-
-        List<Sprite> sprites = new ArrayList<>(MapView.DEFAULT_VERTICAL_NUM);
-
-        Person p = new Person(this);
-        p.setPoint(new Point(5 , 5));
-        sprites.add(p);
-        return sprites;
+    protected Point getPersonPoint() {
+        return new Point(5 ,5);
     }
 }

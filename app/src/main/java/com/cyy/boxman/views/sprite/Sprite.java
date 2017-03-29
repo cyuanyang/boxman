@@ -20,14 +20,12 @@ public class Sprite extends View {
 
     private Point point; //精灵的位置
 
-    private Paint paint;
+
 
     public Sprite(Context context) {
         super(context);
 
-        paint = new Paint();
-        paint.setColor(Color.RED);
-        paint.setTextSize(ScreenTools.dp2px(8));
+
     }
 
     public Point getPoint() {
@@ -39,10 +37,5 @@ public class Sprite extends View {
     }
 
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
 
-        canvas.drawText("地"+point.x+" "+point.y , getWidth()/2 , getHeight()/2 , paint);
-    }
 }
