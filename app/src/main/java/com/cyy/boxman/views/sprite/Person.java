@@ -33,21 +33,21 @@ public class Person extends Sprite {
     }
 
     public void up(){
-        setPoint(new Point(getPoint().x , getPoint().y-1));
+        getPoint().offset(0 , -1);
         requestLayout();
     }
 
     public void down(){
-        setPoint(new Point(getPoint().x , getPoint().y+1));
+        getPoint().offset(0 , 1);
         requestLayout();
     }
     public void left(){
-        setPoint(new Point(getPoint().x-1 , getPoint().y));
+        getPoint().offset(-1 , 0);
         requestLayout();
     }
 
     public void right(){
-        setPoint(new Point(getPoint().x+1 , getPoint().y));
+        getPoint().offset(1 , 0);
         requestLayout();
     }
 }

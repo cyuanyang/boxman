@@ -2,12 +2,15 @@ package com.cyy.boxman.views.map;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.cyy.boxman.views.sprite.Sprite;
+import com.cyy.boxman.views.sprite.Wall;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +30,8 @@ public class MapView extends ViewGroup{
     private int verticalNum = DEFAULT_VERTICAL_NUM;//地图上垂直方向墙的数量
 
     private MapView controlMapView; //地图上可以移动的图层
+
+    private List<Point> wallPoint = new ArrayList<>(); //地图上墙的位置 作用是做人与墙的碰撞检测
 
     public MapView(Context context) {
         super(context);
@@ -101,7 +106,11 @@ public class MapView extends ViewGroup{
      * @param spriteList 地图底图的资源 墙 地 推箱子的目的地
      */
     public void setupMapSprites(List<Sprite> spriteList){
+        wallPoint.clear();
         for (Sprite sprite : spriteList){
+            if (sprite instanceof Wall){
+                wallPoint.add(sprite.getPoint());
+            }
             addView(sprite);
         }
     }
@@ -142,5 +151,9 @@ public class MapView extends ViewGroup{
 
     public MapView getControlMapView() {
         return controlMapView;
+    }
+
+    public List<Point> getWallPoint() {
+        return wallPoint;
     }
 }
