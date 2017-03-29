@@ -120,7 +120,6 @@ public class MapView extends ViewGroup{
         for (Sprite sprite : spriteList) {
             controlMapView.addView(sprite);
         }
-
     }
 
     /**
@@ -139,5 +138,9 @@ public class MapView extends ViewGroup{
 
     public int getVerticalNum() {
         return verticalNum;
+    }
+
+    public MapView getControlMapView() {
+        return controlMapView;
     }
 }

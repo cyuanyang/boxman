@@ -1,5 +1,6 @@
 package com.cyy.boxman;
 
+import com.cyy.boxman.views.map.MapView;
 import com.cyy.boxman.views.sprite.Person;
 
 /**
@@ -10,12 +11,27 @@ import com.cyy.boxman.views.sprite.Person;
 public class ControlManager {
 
     private Person person;
+    private MapView mapView;
 
-    public ControlManager(Person person){
+    public ControlManager(MapView mapView , Person person){
         this.person = person;
+        this.mapView = mapView;
     }
 
     public void up(){
-
+        person.up();
     }
+
+    public void down(){
+        person.down();
+    }
+
+    public void left(){
+        person.left();
+    }
+
+    public void right(){
+        person.right();
+    }
+
 }

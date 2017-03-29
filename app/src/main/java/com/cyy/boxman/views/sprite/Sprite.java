@@ -25,7 +25,6 @@ public class Sprite extends View {
     public Sprite(Context context) {
         super(context);
 
-
     }
 
     public Point getPoint() {

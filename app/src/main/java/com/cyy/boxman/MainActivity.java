@@ -20,6 +20,7 @@ import java.util.List;
 public abstract class MainActivity extends Activity implements View.OnClickListener {
 
     protected Button upBtn;
+    protected Button downBtn;
     private MapView mapView;
     private ControlManager controlManager;
 
@@ -44,7 +45,7 @@ public abstract class MainActivity extends Activity implements View.OnClickListe
         controlSprite.add(person);
         mapView.setupControlSprite(controlSprite);
         //初始化移动控制
-        controlManager = new ControlManager(person);
+        controlManager = new ControlManager(mapView, person);
     }
 
     private void initView() {
@@ -52,6 +53,8 @@ public abstract class MainActivity extends Activity implements View.OnClickListe
         configMapView(mapView);
         upBtn = (Button) findViewById(R.id.upBtn);
         upBtn.setOnClickListener(MainActivity.this);
+        downBtn = (Button) findViewById(R.id.downBtn);
+        downBtn.setOnClickListener(MainActivity.this);
     }
 
     /**
@@ -74,16 +77,18 @@ public abstract class MainActivity extends Activity implements View.OnClickListe
 
     /**
      * 初始化人物
+     *
      * @return
      */
-    private void initPersionSprite(){
+    private void initPersionSprite() {
         this.person = new Person(this);
         this.person.setPoint(getPersonPoint());
     }
 
-    protected Point getPersonPoint(){
-        return new Point(0 , 0);
+    protected Point getPersonPoint() {
+        return new Point(0, 0);
     }
+
     /**
      * config map view
      *
@@ -97,6 +102,8 @@ public abstract class MainActivity extends Activity implements View.OnClickListe
     public void onClick(View view) {
         if (view.getId() == R.id.upBtn) {
             controlManager.up();
+        } else if (view.getId() == R.id.downBtn) {
+            controlManager.down();
         }
     }
 }
