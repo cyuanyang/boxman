@@ -23,7 +23,8 @@ public abstract class MainActivity extends Activity {
         super.setContentView(R.layout.activity_main);
         initView();
 
-        mapView.setupSprites(initSprites());
+        mapView.setupMapSprites(initSprites());
+        mapView.setupControlSprite(initControlSprites());
     }
 
     private void initView() {
@@ -31,10 +32,21 @@ public abstract class MainActivity extends Activity {
         configMapView(mapView);
     }
 
-    protected List<List<Sprite>> initSprites(){
+    /**
+     * 初始化地图不可动资源
+     * @return 返回sprites
+     */
+    protected List<Sprite> initSprites(){
         return Collections.emptyList();
     }
 
+    /**
+     * 初始化地图可动资源
+     * @return 返回sprites
+     */
+    protected List<Sprite> initControlSprites(){
+        return Collections.emptyList();
+    }
     /**
      * config map view
      * @param mapView

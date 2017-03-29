@@ -23,7 +23,7 @@ public class Wall extends Sprite {
 
         paint = new Paint();
         paint.setColor(Color.WHITE);
-        paint.setTextSize(ScreenTools.dp2px(16));
+        paint.setTextSize(ScreenTools.dp2px(8));
     }
 
 
@@ -31,6 +31,6 @@ public class Wall extends Sprite {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawText("墙"  , getWidth()/2 , getHeight()/2 , paint);
+        canvas.drawText("墙"+getPoint().x+" "+getPoint().y  , getWidth()/2 , getHeight()/2 , paint);
     }
 }

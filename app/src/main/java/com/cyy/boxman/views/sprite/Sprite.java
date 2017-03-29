@@ -27,7 +27,7 @@ public class Sprite extends View {
 
         paint = new Paint();
         paint.setColor(Color.RED);
-        paint.setTextSize(ScreenTools.dp2px(16));
+        paint.setTextSize(ScreenTools.dp2px(8));
     }
 
     public Point getPoint() {
@@ -43,6 +43,6 @@ public class Sprite extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawText("地"  , getWidth()/2 , getHeight()/2 , paint);
+        canvas.drawText("地"+point.x+" "+point.y , getWidth()/2 , getHeight()/2 , paint);
     }
 }
