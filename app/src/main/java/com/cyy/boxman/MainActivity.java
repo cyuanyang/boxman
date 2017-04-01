@@ -35,10 +35,8 @@ public abstract class MainActivity extends Activity implements View.OnClickListe
         super.setContentView(R.layout.activity_main);
         initView();
 
-        //初始化地 和 强墙
-        List<Sprite> mapSprites = initSprites();
-        mapView.setupMapSprites(mapSprites);
-
+        mapView.setupMapSprites();
+        mapView.setupWallAndTermail(initMapPoint() , initTerminalPoint());
         List<Sprite> controlSprite = new ArrayList<>();
         //初始化箱子
         controlSprite.addAll(initBoxSprites());
@@ -64,11 +62,19 @@ public abstract class MainActivity extends Activity implements View.OnClickListe
     }
 
     /**
-     * 初始化地图不可动资源
+     * 初始化地图墙的资源
      *
-     * @return 返回sprites
+     * @return 返回Points
      */
-    protected List<Sprite> initSprites() {
+    protected List<Point> initMapPoint() {
+        return Collections.emptyList();
+    }
+
+    /**
+     * 初始化 箱子目的地 points
+     * @return points
+     */
+    protected List<Point> initTerminalPoint(){
         return Collections.emptyList();
     }
 

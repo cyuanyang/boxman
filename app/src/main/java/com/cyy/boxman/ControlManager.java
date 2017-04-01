@@ -36,13 +36,6 @@ public class ControlManager {
     }
 
     public void up(){
-//        boolean isWall = false;
-//        for (Point wallPoint : mapView.getWallPoint()) {
-//            if (wallPoint.equals(person.getPoint().x , person.getPoint().y-1)){
-//                isWall = true;
-//                break;
-//            }
-//        }
         if (!isWall(person.getPoint().x , person.getPoint().y-1)){
             person.up();
         }else {

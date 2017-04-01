@@ -7,7 +7,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cyy.boxman.views.sprite.Ground;
 import com.cyy.boxman.views.sprite.Sprite;
+import com.cyy.boxman.views.sprite.Terminal;
 import com.cyy.boxman.views.sprite.Wall;
 
 import java.util.ArrayList;
@@ -56,8 +58,18 @@ public class MapView extends ViewGroup{
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
+        //测量地图的大小 宽度自适应屏幕的宽度 高度根据地图的行数来确定
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int height = MeasureSpec.getSize(heightMeasureSpec);
+
+        //每一块地图的宽度
+        int unitPx = width/horizontalNum;
+        //地图的高度
+        int mapHeight = verticalNum * unitPx;
+        //应用到View当中
         setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
-                getDefaultSize(getSuggestedMinimumHeight(), widthMeasureSpec));
+                mapHeight);
 
         int count = getChildCount();
         for (int i = 0; i < count; i++) {
@@ -101,17 +113,62 @@ public class MapView extends ViewGroup{
         }
     }
 
+//    /**
+//     * 初始化地图资源
+//     * @param spriteList 地图底图的资源 墙 地 推箱子的目的地
+//     */
+//    public void setupMapSprites(List<Sprite> spriteList){
+//        wallPoint.clear();
+//        for (Sprite sprite : spriteList){
+//            if (sprite instanceof Wall){
+//                wallPoint.add(sprite.getPoint());
+//            }
+//            addView(sprite);
+//        }
+//    }
     /**
-     * 初始化地图资源
-     * @param spriteList 地图底图的资源 墙 地 推箱子的目的地
+     * 初始化地图底图的资源 一周的墙 地
+     * 这些又一个共同特点 都是不可移动的
      */
-    public void setupMapSprites(List<Sprite> spriteList){
-        wallPoint.clear();
-        for (Sprite sprite : spriteList){
-            if (sprite instanceof Wall){
-                wallPoint.add(sprite.getPoint());
+    public void setupMapSprites(){
+        //这里可优化
+        for (int i = 0; i < horizontalNum; i++) {
+            for (int j = 0; j < verticalNum; j++) {
+                if (j == 0
+                        || i == 0
+                        || j == verticalNum-1
+                        || i == horizontalNum-1){
+                    Wall wall = new Wall(this.getContext());
+                    wall.setPoint(new Point(i , j));
+                    wall.setBackgroundColor(Color.RED);
+                    addView(wall);
+                    wallPoint.add(wall.getPoint());
+                }else {
+                    Ground ground = new Ground(this.getContext());
+                    ground.setPoint(new Point(i , j));
+                    ground.setBackgroundColor(Color.WHITE);
+                    addView(ground);
+                }
             }
-            addView(sprite);
+        }
+    }
+
+    /**
+     * 初始化地图里面的墙 和 终点
+     */
+    public void setupWallAndTermail(List<Point> walls , List<Point> terminals){
+        for (Point point : walls){
+            Wall wall = new Wall(this.getContext());
+            wall.setPoint(point);
+            wall.setBackgroundColor(Color.RED);
+            addView(wall);
+            wallPoint.add(point);
+        }
+        for (Point point : terminals){
+            Terminal terminal = new Terminal(this.getContext());
+            terminal.setPoint(point);
+            terminal.setBackgroundColor(Color.GREEN);
+            addView(terminal);
         }
     }
 
@@ -139,6 +196,9 @@ public class MapView extends ViewGroup{
     public void setHorizontalNumAndVertical(int horizontalNum , int verticalNum){
         this.verticalNum = verticalNum;
         this.horizontalNum = horizontalNum;
+
+        requestLayout();
+        invalidate();
     }
 
     public int getHorizontalNum() {

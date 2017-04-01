@@ -20,38 +20,32 @@ import java.util.List;
 
 public class FirstRound extends MainActivity {
 
+    public static final int HORIZONTAL_NUM = 10;
+    public static final int VERTICAL_NUM = 10;
+
     @Override
     protected void configMapView(MapView mapView) {
         super.configMapView(mapView);
-
+        mapView.setHorizontalNumAndVertical(HORIZONTAL_NUM , VERTICAL_NUM);
     }
 
     @Override
-    protected List<Sprite> initSprites() {
-        List<Sprite> spriteList = new ArrayList<>(
-                MapView.DEFAULT_VERTICAL_NUM*MapView.DEFAULT_HORIZONTAL_NUM);
+    protected List<Point> initMapPoint() {
+        List<Point> points = new ArrayList<>();
+        points.add(new Point(2,2));
+        return points;
+    }
 
-        //这里可优化
-        for (int i = 0; i < MapView.DEFAULT_VERTICAL_NUM; i++) {
+    @Override
+    protected List<Point> initTerminalPoint() {
+        List<Point> points = new ArrayList<>();
+        points.add(new Point(7,7));
+        return points;
+    }
 
-            for (int j = 0; j < MapView.DEFAULT_HORIZONTAL_NUM; j++) {
-                if (j == 0
-                        || i == 0
-                        || j == MapView.DEFAULT_VERTICAL_NUM-1
-                        || i == MapView.DEFAULT_HORIZONTAL_NUM-1){
-                    Wall wall = new Wall(this);
-                    wall.setPoint(new Point(i , j));
-                    wall.setBackgroundColor(Color.RED);
-                    spriteList.add(wall);
-                }else {
-                    Ground ground = new Ground(this);
-                    ground.setPoint(new Point(i , j));
-                    ground.setBackgroundColor(Color.WHITE);
-                    spriteList.add(ground);
-                }
-            }
-        }
-        return spriteList;
+    @Override
+    protected List<Sprite> initBoxSprites() {
+        return super.initBoxSprites();
     }
 
     @Override
