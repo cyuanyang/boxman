@@ -21,6 +21,8 @@ public abstract class MainActivity extends Activity implements View.OnClickListe
 
     protected Button upBtn;
     protected Button downBtn;
+    protected Button leftBtn;
+    protected Button rightBtn;
     private MapView mapView;
     private ControlManager controlManager;
 
@@ -55,6 +57,10 @@ public abstract class MainActivity extends Activity implements View.OnClickListe
         upBtn.setOnClickListener(MainActivity.this);
         downBtn = (Button) findViewById(R.id.downBtn);
         downBtn.setOnClickListener(MainActivity.this);
+        leftBtn = (Button) findViewById(R.id.leftBtn);
+        leftBtn.setOnClickListener(MainActivity.this);
+        rightBtn = (Button) findViewById(R.id.rightBtn);
+        rightBtn.setOnClickListener(MainActivity.this);
     }
 
     /**
@@ -104,6 +110,10 @@ public abstract class MainActivity extends Activity implements View.OnClickListe
             controlManager.up();
         } else if (view.getId() == R.id.downBtn) {
             controlManager.down();
+        } else if (view.getId() == R.id.leftBtn) {
+            controlManager.left();
+        } else if (view.getId() == R.id.rightBtn) {
+            controlManager.right();
         }
     }
 }

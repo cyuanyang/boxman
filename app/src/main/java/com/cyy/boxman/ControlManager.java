@@ -21,15 +21,29 @@ public class ControlManager {
         this.mapView = mapView;
     }
 
-    public void up(){
+    //移动的时候判断 下一步是不是墙
+    //返回 true 确实是墙  false 不是墙
+    private boolean isWall(int nextX , int nextY){
         boolean isWall = false;
         for (Point wallPoint : mapView.getWallPoint()) {
-            if (wallPoint.equals(person.getPoint().x , person.getPoint().y-1)){
+            if (wallPoint.equals(nextX ,nextY)){
                 isWall = true;
                 break;
             }
         }
-        if (!isWall){
+
+        return isWall;
+    }
+
+    public void up(){
+//        boolean isWall = false;
+//        for (Point wallPoint : mapView.getWallPoint()) {
+//            if (wallPoint.equals(person.getPoint().x , person.getPoint().y-1)){
+//                isWall = true;
+//                break;
+//            }
+//        }
+        if (!isWall(person.getPoint().x , person.getPoint().y-1)){
             person.up();
         }else {
             Toast.makeText(App.getInstance(), "墙啊", Toast.LENGTH_SHORT).show();
@@ -37,15 +51,27 @@ public class ControlManager {
     }
 
     public void down(){
-        person.down();
+        if (!isWall(person.getPoint().x , person.getPoint().y+1)){
+            person.down();
+        }else {
+            Toast.makeText(App.getInstance(), "墙啊", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void left(){
-        person.left();
+        if (!isWall(person.getPoint().x-1 , person.getPoint().y)){
+            person.left();
+        }else {
+            Toast.makeText(App.getInstance(), "墙啊", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void right(){
-        person.right();
+        if (!isWall(person.getPoint().x + 1, person.getPoint().y)){
+            person.right();
+        }else {
+            Toast.makeText(App.getInstance(), "墙啊", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

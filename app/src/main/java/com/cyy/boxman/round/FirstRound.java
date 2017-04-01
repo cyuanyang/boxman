@@ -35,7 +35,10 @@ public class FirstRound extends MainActivity {
         for (int i = 0; i < MapView.DEFAULT_VERTICAL_NUM; i++) {
 
             for (int j = 0; j < MapView.DEFAULT_HORIZONTAL_NUM; j++) {
-                if (j == 0){
+                if (j == 0
+                        || i == 0
+                        || j == MapView.DEFAULT_VERTICAL_NUM-1
+                        || i == MapView.DEFAULT_HORIZONTAL_NUM-1){
                     Wall wall = new Wall(this);
                     wall.setPoint(new Point(i , j));
                     wall.setBackgroundColor(Color.RED);

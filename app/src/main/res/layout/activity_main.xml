@@ -26,6 +26,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="下"/>
+        <Button
+            android:id="@+id/leftBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="左"/>
+        <Button
+            android:id="@+id/rightBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="右"/>
     </LinearLayout>
 
 </LinearLayout>
