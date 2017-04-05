@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.annotation.ColorInt;
 
 import com.cyy.boxman.R;
 import com.cyy.boxman.tools.ScreenTools;
@@ -28,9 +29,17 @@ public class Wall extends Sprite {
 
 
     @Override
+    public void setBackgroundColor(@ColorInt int color) {
+        super.setBackgroundColor(color);
+        setBackgroundResource(R.drawable.wall);
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawText("墙"+getPoint().x+" "+getPoint().y  , getWidth()/2 , getHeight()/2 , paint);
+//        setBackground();
+
+//        canvas.drawText("墙"+getPoint().x+" "+getPoint().y  , getWidth()/2 , getHeight()/2 , paint);
     }
 }
