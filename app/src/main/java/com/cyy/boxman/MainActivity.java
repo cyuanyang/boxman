@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.cyy.boxman.views.map.MapView;
+import com.cyy.boxman.views.sprite.Box;
 import com.cyy.boxman.views.sprite.Person;
 import com.cyy.boxman.views.sprite.Sprite;
 
@@ -39,9 +40,6 @@ public abstract class MainActivity extends Activity implements View.OnClickListe
         mapView.setupWallAndTermail(initMapPoint() , initTerminalPoint());
 
         initControlSprite();
-
-        //初始化移动控制
-        controlManager = new ControlManager(mapView, person);
     }
 
     private void initView() {
@@ -77,14 +75,21 @@ public abstract class MainActivity extends Activity implements View.OnClickListe
     //初始化可移动资源
     private void initControlSprite(){
         List<Sprite> controlSprite = new ArrayList<>();
-        //初始化箱子
-        List<Point> boxPoints = initBoxSprites();
-        for (Point p : boxPoints){
-            controlSprite.add(mapView.makeBoxWithPoint(p));
-        }
         //初始化人物
         this.person = mapView.makePersonWithPoint(getPersonPoint());
         controlSprite.add(person);
+
+        //初始化移动控制
+        controlManager = new ControlManager(mapView, person);
+
+        //初始化箱子
+        List<Point> boxPoints = initBoxSprites();
+        for (Point p : boxPoints){
+            Box box = mapView.makeBoxWithPoint(p);
+            controlSprite.add(box);
+            controlManager.setBoxSprite(box);
+        }
+
         mapView.setupControlSprite(controlSprite);
     }
 

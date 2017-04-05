@@ -29,7 +29,27 @@ public class Box extends Sprite {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
+    }
 
+    public void up(){
+        getPoint().offset(0 , -1);
+        requestLayout();
 
+    }
+
+    public void down(){
+        getPoint().offset(0 , 1);
+        requestLayout();
+
+    }
+    public void left(){
+        getPoint().offset(-1 , 0);
+        requestLayout();
+
+    }
+
+    public void right(){
+        getPoint().offset(1 , 0);
+        requestLayout();
     }
 }
