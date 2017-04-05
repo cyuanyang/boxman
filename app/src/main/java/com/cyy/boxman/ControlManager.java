@@ -13,8 +13,17 @@ import com.cyy.boxman.views.sprite.Person;
 
 public class ControlManager {
 
+    public enum PersonAction{
+        Up,
+        Down,
+        Left,
+        Right,
+    }
+
     private Person person;
     private MapView mapView;
+
+    private PersonAction preAction = PersonAction.Down;
 
     public ControlManager(MapView mapView , Person person){
         this.person = person;
@@ -37,34 +46,42 @@ public class ControlManager {
 
     public void up(){
         if (!isWall(person.getPoint().x , person.getPoint().y-1)){
-            person.up();
-        }else {
-            Toast.makeText(App.getInstance(), "墙啊", Toast.LENGTH_SHORT).show();
+            person.up(preAction != PersonAction.Up);
+            preAction = PersonAction.Up;
         }
+//        else {
+//            Toast.makeText(App.getInstance(), "墙啊", Toast.LENGTH_SHORT).show();
+//        }
     }
 
     public void down(){
         if (!isWall(person.getPoint().x , person.getPoint().y+1)){
-            person.down();
-        }else {
-            Toast.makeText(App.getInstance(), "墙啊", Toast.LENGTH_SHORT).show();
+            person.down(preAction != PersonAction.Down);
+            preAction = PersonAction.Down;
         }
+//        else {
+//            Toast.makeText(App.getInstance(), "墙啊", Toast.LENGTH_SHORT).show();
+//        }
     }
 
     public void left(){
         if (!isWall(person.getPoint().x-1 , person.getPoint().y)){
-            person.left();
-        }else {
-            Toast.makeText(App.getInstance(), "墙啊", Toast.LENGTH_SHORT).show();
+            person.left(preAction != PersonAction.Left);
+            preAction = PersonAction.Left;
         }
+//        else {
+//            Toast.makeText(App.getInstance(), "墙啊", Toast.LENGTH_SHORT).show();
+//        }
     }
 
     public void right(){
         if (!isWall(person.getPoint().x + 1, person.getPoint().y)){
-            person.right();
-        }else {
-            Toast.makeText(App.getInstance(), "墙啊", Toast.LENGTH_SHORT).show();
+            person.right(preAction != PersonAction.Right);
+            preAction = PersonAction.Right;
         }
+//        else {
+//            Toast.makeText(App.getInstance(), "墙啊", Toast.LENGTH_SHORT).show();
+//        }
     }
 
 }

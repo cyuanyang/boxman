@@ -29,22 +29,34 @@ public class Person extends Sprite {
         super.onDraw(canvas);
     }
 
-    public void up(){
+    public void up(boolean change){
         getPoint().offset(0 , -1);
         requestLayout();
+        if (change){
+            this.setBackgroundResource(R.drawable.p_back);
+        }
     }
 
-    public void down(){
+    public void down(boolean change){
         getPoint().offset(0 , 1);
         requestLayout();
+        if (change){
+            this.setBackgroundResource(R.drawable.p_forward);
+        }
     }
-    public void left(){
+    public void left(boolean change){
         getPoint().offset(-1 , 0);
         requestLayout();
+        if (change){
+            this.setBackgroundResource(R.drawable.p_left);
+        }
     }
 
-    public void right(){
+    public void right(boolean change){
         getPoint().offset(1 , 0);
         requestLayout();
+        if (change){
+            this.setBackgroundResource(R.drawable.p_right);
+        }
     }
 }
