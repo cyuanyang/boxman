@@ -46,7 +46,7 @@ public class FirstRound extends MainActivity {
     @Override
     protected List<Point> initBoxSprites() {
         List<Point> points = new ArrayList<>();
-        points.add(new Point(1,1));
+        points.add(new Point(3,3));
         return points;
     }
 
