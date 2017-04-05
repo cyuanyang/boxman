@@ -44,8 +44,10 @@ public class FirstRound extends MainActivity {
     }
 
     @Override
-    protected List<Sprite> initBoxSprites() {
-        return super.initBoxSprites();
+    protected List<Point> initBoxSprites() {
+        List<Point> points = new ArrayList<>();
+        points.add(new Point(1,1));
+        return points;
     }
 
     @Override

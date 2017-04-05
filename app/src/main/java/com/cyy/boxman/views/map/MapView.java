@@ -7,7 +7,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cyy.boxman.views.sprite.Box;
 import com.cyy.boxman.views.sprite.Ground;
+import com.cyy.boxman.views.sprite.Person;
 import com.cyy.boxman.views.sprite.Sprite;
 import com.cyy.boxman.views.sprite.Terminal;
 import com.cyy.boxman.views.sprite.Wall;
@@ -140,13 +142,11 @@ public class MapView extends ViewGroup{
                         || i == horizontalNum-1){
                     Wall wall = new Wall(this.getContext());
                     wall.setPoint(new Point(i , j));
-                    wall.setBackgroundColor(Color.RED);
                     addView(wall);
                     wallPoint.add(wall.getPoint());
                 }else {
                     Ground ground = new Ground(this.getContext());
                     ground.setPoint(new Point(i , j));
-                    ground.setBackgroundColor(Color.WHITE);
                     addView(ground);
                 }
             }
@@ -160,14 +160,12 @@ public class MapView extends ViewGroup{
         for (Point point : walls){
             Wall wall = new Wall(this.getContext());
             wall.setPoint(point);
-            wall.setBackgroundColor(Color.RED);
             addView(wall);
             wallPoint.add(point);
         }
         for (Point point : terminals){
             Terminal terminal = new Terminal(this.getContext());
             terminal.setPoint(point);
-            terminal.setBackgroundColor(Color.GREEN);
             addView(terminal);
         }
     }
@@ -186,6 +184,18 @@ public class MapView extends ViewGroup{
         for (Sprite sprite : spriteList) {
             controlMapView.addView(sprite);
         }
+    }
+
+    public Box makeBoxWithPoint(Point point){
+        Box box = new Box(this.getContext());
+        box.setPoint(point);
+        return box;
+    }
+
+    public Person makePersonWithPoint(Point point){
+        Person person = new Person(this.getContext());
+        person.setPoint(point);
+        return person;
     }
 
     /**

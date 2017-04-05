@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 
 import com.cyy.boxman.Constants;
+import com.cyy.boxman.R;
 
 /**
  * Created by study on 17/3/15.
@@ -21,6 +22,8 @@ public class Box extends Sprite {
 
     public Box(Context context) {
         super(context);
+
+        setBackgroundResource(R.drawable.box);
     }
 
     @Override

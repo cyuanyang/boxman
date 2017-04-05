@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 
+import com.cyy.boxman.R;
 import com.cyy.boxman.tools.ScreenTools;
 
 /**
@@ -16,20 +17,16 @@ import com.cyy.boxman.tools.ScreenTools;
 
 public class Person extends Sprite {
 
-    private Paint paint;
 
     public Person(Context context) {
         super(context);
 
-        paint = new Paint();
-        paint.setColor(Color.BLUE);
-        paint.setTextSize(ScreenTools.dp2px(10));
+        setBackgroundResource(R.drawable.p_forward);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawText("人"+getPoint().x+" "+getPoint().y  , getWidth()/2 , getHeight()/2 , paint);
     }
 
     public void up(){

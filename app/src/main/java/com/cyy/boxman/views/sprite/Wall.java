@@ -20,26 +20,22 @@ public class Wall extends Sprite {
 
     public Wall(Context context) {
         super(context);
-        this.setBackgroundResource(R.color.wall_color);
 
         paint = new Paint();
         paint.setColor(Color.WHITE);
         paint.setTextSize(ScreenTools.dp2px(8));
+
+        setBackgroundResource(R.drawable.wall);
     }
 
 
     @Override
     public void setBackgroundColor(@ColorInt int color) {
         super.setBackgroundColor(color);
-        setBackgroundResource(R.drawable.wall);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-//        setBackground();
-
-//        canvas.drawText("墙"+getPoint().x+" "+getPoint().y  , getWidth()/2 , getHeight()/2 , paint);
     }
 }

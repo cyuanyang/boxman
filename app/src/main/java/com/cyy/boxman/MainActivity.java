@@ -37,13 +37,9 @@ public abstract class MainActivity extends Activity implements View.OnClickListe
 
         mapView.setupMapSprites();
         mapView.setupWallAndTermail(initMapPoint() , initTerminalPoint());
-        List<Sprite> controlSprite = new ArrayList<>();
-        //初始化箱子
-        controlSprite.addAll(initBoxSprites());
-        //初始化人物
-        initPersionSprite();
-        controlSprite.add(person);
-        mapView.setupControlSprite(controlSprite);
+
+        initControlSprite();
+
         //初始化移动控制
         controlManager = new ControlManager(mapView, person);
     }
@@ -78,23 +74,27 @@ public abstract class MainActivity extends Activity implements View.OnClickListe
         return Collections.emptyList();
     }
 
+    //初始化可移动资源
+    private void initControlSprite(){
+        List<Sprite> controlSprite = new ArrayList<>();
+        //初始化箱子
+        List<Point> boxPoints = initBoxSprites();
+        for (Point p : boxPoints){
+            controlSprite.add(mapView.makeBoxWithPoint(p));
+        }
+        //初始化人物
+        this.person = mapView.makePersonWithPoint(getPersonPoint());
+        controlSprite.add(person);
+        mapView.setupControlSprite(controlSprite);
+    }
+
     /**
      * 初始化地图移动箱子资源
      *
      * @return 返回sprites
      */
-    protected List<Sprite> initBoxSprites() {
+    protected List<Point> initBoxSprites() {
         return Collections.emptyList();
-    }
-
-    /**
-     * 初始化人物
-     *
-     * @return
-     */
-    private void initPersionSprite() {
-        this.person = new Person(this);
-        this.person.setPoint(getPersonPoint());
     }
 
     protected Point getPersonPoint() {

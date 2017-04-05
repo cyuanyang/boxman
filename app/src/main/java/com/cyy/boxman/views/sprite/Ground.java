@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.cyy.boxman.R;
 import com.cyy.boxman.tools.ScreenTools;
 
 /**
@@ -19,15 +20,17 @@ public class Ground extends Sprite {
 
     public Ground(Context context) {
         super(context);
-        paint = new Paint();
-        paint.setColor(Color.RED);
-        paint.setTextSize(ScreenTools.dp2px(8));
+//        paint = new Paint();
+//        paint.setColor(Color.RED);
+//        paint.setTextSize(ScreenTools.dp2px(8));
+
+        setBackgroundResource(R.drawable.ground);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawText("地"+getPoint().x+" "+getPoint().y , getWidth()/2 , getHeight()/2 , paint);
+//        canvas.drawText("地"+getPoint().x+" "+getPoint().y , getWidth()/2 , getHeight()/2 , paint);
     }
 }
