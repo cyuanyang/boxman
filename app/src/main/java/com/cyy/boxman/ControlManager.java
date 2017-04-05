@@ -40,7 +40,6 @@ public class ControlManager {
                 break;
             }
         }
-
         return isWall;
     }
 
