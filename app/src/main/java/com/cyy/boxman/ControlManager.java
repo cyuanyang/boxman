@@ -102,6 +102,11 @@ public class ControlManager {
         return false;
     }
 
+    //游戏胜利
+    private void gameWin(){
+
+    }
+
     public void up(){
         int nextX = person.getPoint().x;
         int nextY = person.getPoint().y-1;
@@ -120,6 +125,7 @@ public class ControlManager {
             }
             person.up(preAction != PersonAction.Up);
             preAction = PersonAction.Up;
+            gameWin();
         }
     }
 
@@ -141,6 +147,7 @@ public class ControlManager {
             }
             person.down(preAction != PersonAction.Down);
             preAction = PersonAction.Down;
+            gameWin();
         }
     }
 
@@ -162,6 +169,7 @@ public class ControlManager {
             }
             person.left(preAction != PersonAction.Left);
             preAction = PersonAction.Left;
+            gameWin();
         }
     }
 
@@ -183,6 +191,7 @@ public class ControlManager {
             }
             person.right(preAction != PersonAction.Right);
             preAction = PersonAction.Right;
+            gameWin();
         }
     }
 
