@@ -31,15 +31,23 @@ public class ControlManager {
     private PersonAction preAction = PersonAction.Down;
 
     private List<Box> boxSprite = new ArrayList<>(); //地图上的箱子
+    private List<Point> terminalPoints = new ArrayList<>();//地图上的箱子的终点
 
-    public ControlManager(MapView mapView , Person person){
-        this.person = person;
+    public ControlManager(MapView mapView ){
         this.mapView = mapView;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     //设置箱子
     public void setBoxSprite(Box boxSprite) {
         this.boxSprite.add(boxSprite);
+    }
+
+    public void setTerminalPoints(List<Point> terminalPoints) {
+        this.terminalPoints = terminalPoints;
     }
 
     //移动的时候判断 下一步是不是墙
@@ -79,6 +87,21 @@ public class ControlManager {
         return null;
     }
 
+    /**
+     * 根据箱子的下一步 确定箱子是否进入目的地
+     * @param boxNextX box x
+     * @param boxNextY box y
+     * @return ""
+     */
+    private Boolean isEnterTerminal(int boxNextX , int boxNextY){
+        for (Point tp : this.terminalPoints) {
+            if (tp.equals(boxNextX, boxNextY)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void up(){
         int nextX = person.getPoint().x;
         int nextY = person.getPoint().y-1;
@@ -89,7 +112,7 @@ public class ControlManager {
                 int boxNextX = moveBox.getPoint().x;
                 int boxNextY = moveBox.getPoint().y-1;
                 if (!isWall(boxNextX , boxNextY)&&!isOtherBox(boxNextX , boxNextY)){
-                    moveBox.up();
+                    moveBox.up(isEnterTerminal(boxNextX , boxNextY));
                 }else {
                     return;
                 }
@@ -110,7 +133,7 @@ public class ControlManager {
                 int boxNextX = moveBox.getPoint().x;
                 int boxNextY = moveBox.getPoint().y+1;
                 if (!isWall(boxNextX , boxNextY)&&!isOtherBox(boxNextX , boxNextY)){
-                    moveBox.down();
+                    moveBox.down(isEnterTerminal(boxNextX , boxNextY));
                 }else {
                     return;
                 }
@@ -131,7 +154,7 @@ public class ControlManager {
                 int boxNextX = moveBox.getPoint().x-1;
                 int boxNextY = moveBox.getPoint().y;
                 if (!isWall(boxNextX , boxNextY)&&!isOtherBox(boxNextX , boxNextY)){
-                    moveBox.left();
+                    moveBox.left(isEnterTerminal(boxNextX , boxNextY));
                 }else {
                     return;
                 }
@@ -152,7 +175,7 @@ public class ControlManager {
                 int boxNextX = moveBox.getPoint().x+1;
                 int boxNextY = moveBox.getPoint().y;
                 if (!isWall(boxNextX , boxNextY)&&!isOtherBox(boxNextX , boxNextY)){
-                    moveBox.right();
+                    moveBox.right(isEnterTerminal(boxNextX , boxNextY));
                 }else {
                     return;
                 }

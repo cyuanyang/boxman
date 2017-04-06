@@ -36,9 +36,13 @@ public abstract class MainActivity extends Activity implements View.OnClickListe
         super.setContentView(R.layout.activity_main);
         initView();
 
-        mapView.setupMapSprites();
-        mapView.setupWallAndTermail(initMapPoint() , initTerminalPoint());
+        //初始化移动控制
+        controlManager = new ControlManager(mapView);
 
+        mapView.setupMapSprites();
+        List<Point> terminalPoints = initTerminalPoint();
+        mapView.setupWallAndTermail(initMapPoint() , terminalPoints);
+        controlManager.setTerminalPoints(terminalPoints);
         initControlSprite();
     }
 
@@ -78,10 +82,7 @@ public abstract class MainActivity extends Activity implements View.OnClickListe
         //初始化人物
         this.person = mapView.makePersonWithPoint(getPersonPoint());
         controlSprite.add(person);
-
-        //初始化移动控制
-        controlManager = new ControlManager(mapView, person);
-
+        controlManager.setPerson(person);
         //初始化箱子
         List<Point> boxPoints = initBoxSprites();
         for (Point p : boxPoints){

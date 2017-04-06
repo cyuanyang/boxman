@@ -18,28 +18,28 @@
 
         <Button
             android:id="@+id/upBtn"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:layout_centerHorizontal="true"
             android:text="上"/>
         <Button
             android:id="@+id/downBtn"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:layout_below="@+id/upBtn"
             android:layout_centerHorizontal="true"
             android:text="下"/>
         <Button
             android:id="@+id/leftBtn"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:layout_toLeftOf="@+id/upBtn"
             android:layout_marginTop="20dp"
             android:text="左"/>
         <Button
             android:id="@+id/rightBtn"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:layout_toRightOf="@+id/upBtn"
             android:layout_alignTop="@+id/leftBtn"
             android:text="右"/>

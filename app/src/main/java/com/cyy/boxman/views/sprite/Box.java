@@ -31,25 +31,42 @@ public class Box extends Sprite {
         super.draw(canvas);
     }
 
-    public void up(){
+    public void up(boolean isEnterTerminal){
         getPoint().offset(0 , -1);
         requestLayout();
-
+        if (isEnterTerminal){
+            setBackgroundResource(R.drawable.box_end);
+        }else {
+            setBackgroundResource(R.drawable.box);
+        }
     }
 
-    public void down(){
+    public void down(boolean isEnterTerminal){
         getPoint().offset(0 , 1);
         requestLayout();
-
+        if (isEnterTerminal){
+            setBackgroundResource(R.drawable.box_end);
+        }else {
+            setBackgroundResource(R.drawable.box);
+        }
     }
-    public void left(){
+    public void left(boolean isEnterTerminal){
         getPoint().offset(-1 , 0);
         requestLayout();
-
+        if (isEnterTerminal){
+            setBackgroundResource(R.drawable.box_end);
+        }else {
+            setBackgroundResource(R.drawable.box);
+        }
     }
 
-    public void right(){
+    public void right(boolean isEnterTerminal){
         getPoint().offset(1 , 0);
         requestLayout();
+        if (isEnterTerminal){
+            setBackgroundResource(R.drawable.box_end);
+        }else {
+            setBackgroundResource(R.drawable.box);
+        }
     }
 }

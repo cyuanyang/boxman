@@ -32,14 +32,49 @@ public class FirstRound extends MainActivity {
     @Override
     protected List<Point> initMapPoint() {
         List<Point> points = new ArrayList<>();
+
+        points.add(new Point(4,1));
+        points.add(new Point(5,1));
+        points.add(new Point(8,1));
+
         points.add(new Point(2,2));
+        points.add(new Point(8,2));
+
+        points.add(new Point(5,3));
+        points.add(new Point(8,3));
+
+        points.add(new Point(1,4));
+        points.add(new Point(3,4));
+        points.add(new Point(7,4));
+        points.add(new Point(8,4));
+
+        points.add(new Point(1,5));
+        points.add(new Point(3,5));
+        points.add(new Point(4,5));
+        points.add(new Point(5,5));
+        points.add(new Point(7,5));
+        points.add(new Point(8,5));
+
+        points.add(new Point(4,7));
+        points.add(new Point(5,7));
+        points.add(new Point(7,7));
+
+        points.add(new Point(1,8));
+        points.add(new Point(2,8));
+        points.add(new Point(3,8));
+        points.add(new Point(4,8));
+        points.add(new Point(5,8));
+
         return points;
     }
 
     @Override
     protected List<Point> initTerminalPoint() {
         List<Point> points = new ArrayList<>();
-        points.add(new Point(7,7));
+        points.add(new Point(3,3));
+        points.add(new Point(4,3));
+        points.add(new Point(4,4));
+        points.add(new Point(6,4));
         return points;
     }
 
@@ -47,11 +82,14 @@ public class FirstRound extends MainActivity {
     protected List<Point> initBoxSprites() {
         List<Point> points = new ArrayList<>();
         points.add(new Point(3,3));
+        points.add(new Point(4,2));
+        points.add(new Point(6,2));
+        points.add(new Point(6,5));
         return points;
     }
 
     @Override
     protected Point getPersonPoint() {
-        return new Point(5 ,5);
+        return new Point(5 ,4);
     }
 }
